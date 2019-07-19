@@ -1,0 +1,30 @@
+version: '3'
+services:
+    web:
+      container_name: cloudlab-server
+      image: openjdk:8
+      volumes:
+        - "./build/libs:/usr/local/cloudlab"
+      working_dir: /tmp
+      ports:
+          - "8080:8080"
+      restart: always
+      depends_on:
+          - db
+      command: java -jar /usr/local/cloudlab/gs-spring-boot-docker-0.1.0.jar
+    db:
+        container_name: cloudlab-db
+        image: postgres:9.6
+        volumes:
+            - ./db/db_data:/var/lib/postgresql/data
+        restart: always
+        environment:
+            - POSTGRES_PASSWORD=cloudlabsecret
+            - POSTGRES_USER=cloudlab
+            - POSTGRES_DB=cloudlab
+            - PGDATA=/var/lib/postgresql/data/pgdata
+        expose:
+            - "5432"
+
+volumes:
+    db_data:
