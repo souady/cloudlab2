@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "events")
+@Table(name = "events") 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Event {
 
