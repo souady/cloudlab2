@@ -60,7 +60,7 @@ public class EventsController {
    public void deleteEvent( @PathVariable Long id) {
 	   Optional<Event> ev = eventsRepository.findById(id);
 	   if (!ev.isPresent())
-		  throw new EventNotFoundException(); // pattern da cui ho chiamato metodo notFound, siccome e' vuoto lo devo buildare!!
+		  throw new EventNotFoundException();
 	  	   eventsRepository.deleteById(id);
    }
 }
